@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModulePrefs title="papapeng" author="SunVy Co., Ltd." author_email="castle@sunvy.co.jp">
+      <Require feature="opensocial-0.8" />
+    <Require feature="views" />
+    <Require feature="dynamic-height"/>
+    <Require feature="opensocial-payment" />
+    <Require feature="mbga" />
+    <Require feature="flash"/>
+    <Link rel="event.joingroup" href="http://papa.sunvy.jp/dena/callback/joingroup.php" /> 
+	<Link rel="payment.handler" href="http://papa.sunvy.jp/dena/callback/payhandler_test.php" /> 
+	<Link rel="event.addapp"    href="http://papa.sunvy.jp/dena/callback/addapp.php" /> 
+	<Link rel="event.removeapp" href="http://papa.sunvy.jp/dena/callback/removeapp.php" /> 
+</ModulePrefs>
+  <Content type="html" view="canvas" preferred_width="950">
+  	<![CDATA[
+<script type="text/javascript">
+var baseUrl = "http://papa.sunvy.jp/";
+var baseStatic = "http://static.papa.sunvy.jp/";
+var userid;
+</script>
+<script type="text/javascript" language="javascript" src="http://papa.sunvy.jp/dena/include/js/config_test.js"></script>
+<script type="text/javascript" language="javascript" src="http://papa.sunvy.jp/dena/include/js/JsApi.js"></script>
+<script type="text/javascript" language="javascript" src="http://papa.sunvy.jp/dena/include/js/jquery.js"></script>
+
+
+<style type="text/css">
+#gameHeader 
+{
+	width:950px;
+	height:36px;
+  	padding-top:3px;
+	margin:0px;
+	overflow:hidden;
+	background: url("http://static.papa.sunvy.jp/ms/images/menu/blue.png") repeat-x ;
+}
+img
+{
+  border:0px;
+  margin:0px;
+}
+
+#gamefaq
+{
+	width: 950px; 
+	position: fixed; 
+	height:650px;
+	top: 40px; 
+	border:0px;
+	background: url('http://static.papa.sunvy.jp/ms/images/menu/blue_2.png') repeat-y ;
+	display:none;
+}
+</style>
+
+<!-- 嵌入游戏头部 -->
+<div id='gameHeader'>
+	<span onclick="javascript:init(config);" style="cursor:pointer;margin:0px;float:left;padding-left:5px;">
+		<img src="http://static.papa.sunvy.jp/ms/images/menu/play.png"/>
+	</span>
+	<span onclick="javascript:invite();" style="cursor:pointer;float:left;margin-left:5px;margin-top:0px;margin-bottom:0px;padding:0px;">
+		<img src="http://static.papa.sunvy.jp/ms/images/menu/invite.png"/>
+	</span> 
+	<span onclick="javascript:showfaq();"  style="cursor:pointer;float:left;margin-left:5px;margin-top:0px;margin-bottom:0px;">
+		<img src="http://static.papa.sunvy.jp/ms/images/menu/faq.png"/>
+	</span> 
+	<span  style="cursor:pointer;float:left;margin-left:5px;margin-top:0px;margin-bottom:0px;">
+		<img src="http://static.papa.sunvy.jp/ms/images/menu/bbs.png"/></span> 
+	</span>
+</div>
+<!-- 嵌入游戏flash -->
+<div id='gameBody' style="width:933;paddding:0px;height:650;margin:0px;"></div>
+<!-- 嵌入游戏编号 -->
+<div id='gameBottom' style="background:#f7f7f7;border:1px solid #cccccc;font-size:12px;line-height:150%;margin:5px 0; text-align: center;width:933;"></div>
+<!-- 游戏帮助 -->
+
+
+
+<div id="gamefaq" >
+<div style="width:940px;margin-left:10px;">
+<a style=" float: right; width: 20px; margin-right:20px;" href="javascript:void(0);" onclick="hidefaq();return false;"><image src="http://static.papa.sunvy.jp/ms/images/menu/x.png" alt="close"/></a><br>
+Q：ゲームのプレイ方法を教えて下さい。<br />
+A：隣り合ったチビモンを入れ替える事ができます。同じ色のチビモンを3つ以上つなげて消しましょう！<br /><br />
+
+Q：どうすればステージクリアになりますか？<br />
+A：ステージごとに決まっている移動回数以内に、目標数以上のチビモンを消してください。目標は左下に表示されています。<br /><br />
+
+Q：マジックジャムはどんな時に減るのですか？<br />
+A：ステージクリアに失敗すると、マジックジャム×1が減少します。<br /><br />
+
+Q：マジックジャムはどのように回復するのですか？<br />
+A：30分おきに1回復します。購入もできます。<br /><br />
+
+Q：うまくクリアできません。なにかコツはありますか？<br />
+A：チビモンを消した時、周囲のチビモンに収集ボーナスがつきます。これを活用してみましょう。また、アイテムも活用してみましょう。<br /><br />
+
+Q：アイテムにはどんな種類がありますか？<br />
+A：こそどろ：こそどろは選んだチビモン×1を消すことができます。<br />
+&#12288;&nbsp;&nbsp;ロケット：ロケットは1列のチビモンを消すことができます。<br />
+&#12288;&nbsp;&nbsp;デカモン：デカモンは同じ色のチビモンを全て消去できます。<br />
+&#12288;&nbsp;&nbsp;プラスワン：収集対象のチビモンに＋1の収集ボーナスをつけます。<br />
+&#12288;&nbsp;&nbsp;浄化：ジャマモンになったチビモンをもとに戻します。<br />
+&#12288;&nbsp;&nbsp;移動回数+5：移動回数+5<br />
+&#12288;&nbsp;&nbsp;移動回数+2：移動回数+2<br />
+&#12288;&nbsp;&nbsp;フラワー：フラワーは隣接するどのチビモンとも移動ができ、その周りのチビモンに＋2の収集ボーナスをつけることができます。<br />
+&#12288;&nbsp;&nbsp;リセット：チビモンの配置をリセットします。
+
+</div>
+</div>
+
+<script>
+gadgets.util.registerOnLoadHandler(load_jsapi(config));
+gadgets.window.adjustHeight(810);
+
+function feed(obj)
+{
+	obj.picturl = 'http://static.papa.sunvy.jp/ms/images/feed.png';
+	sendShare(obj);	
+}
+
+function reloadPage(){
+init(config);
+
+}
+function setUserId(id){
+  userid = id;
+}
+function pay(item_id,id){
+	 if (id == undefined)  
+	  {      
+    		id = -1;   
+	  }  
+	showDialogBuy_params={};
+	showDialogBuy_params['item_id']=item_id;
+	showDialogBuy_params['id']=id;
+	showDialogBuy(
+		showDialogBuy_params,
+		function()
+		{
+			return true;
+		}
+	);
+}
+
+function showfaq()
+{
+	$('#gamefaq').show();
+}
+function hidefaq()
+{
+	$('#gamefaq').hide();
+}
+</script>
+
+
+
+
+
+
+  ]]></Content>
+</Module>

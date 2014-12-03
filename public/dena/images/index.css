@@ -1,0 +1,421 @@
+/*重置浏览器自身的样式 begin*/
+html
+{
+	color: #000;
+	background: #FFF;
+	font: 12px / 1.5 tahoma, arial, \5FAE\8F6F\96C5\9ED1, \5b8b\4f53, sans-serif;
+}
+
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+a
+{
+	color: #369;
+	text-decoration: underline;
+}
+
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+fieldset, img
+{
+	border: 0;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var, optgroup
+{
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+del, ins
+{
+	text-decoration: none;
+}
+
+li
+{
+	list-style: none;
+}
+
+caption, th
+{
+	text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+	font-size: 100%;
+}
+
+q: before, q: after
+{
+	content: '';
+}
+
+abbr, acronym
+{
+	border: 0;
+	font-variant: normal;
+}
+
+sup
+{
+	vertical-align: baseline;
+}
+
+sub
+{
+	vertical-align: baseline;
+}
+
+a, button
+{
+	text-decoration: none;
+	hide-focus: expression(this.hideFocus=true); /* for ie 5+ */
+	outline: none; /* for firefox 1.5 + */
+}
+
+img, div
+{
+	hide-focus: expression(this.hideFocus=true); /* for ie 5+ */
+	outline: none; /* for firefox 1.5 + */
+}
+
+/*because legend doesn't inherit in IE*/
+legend
+{
+	color: #000;
+}
+
+input, button, textarea, select, optgroup, option
+{
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+/*@purpose To enable resizing for IE*/
+/*@branch For IE6-Win, IE7-Win*/
+input, button, textarea, select
+{ 
+	font-size:100%;
+}
+
+/*重置浏览器自身的样式 end*/
+
+.navigator a:link, .navigator a:visited, .navigator a:hover, .navigator a:active
+{
+	color: #000000;
+}
+.navigator
+{
+	position: relative;
+	width: 760px;
+	height: 50px;
+}
+.title
+{
+	position: absolute;
+	top: 9px;
+	display: block;
+	border: 0px solid burlywood;
+	width: 98px;
+	height: 31px;
+}
+.title0
+{
+	background-position: 0 -33px;
+	left: 60px;
+}
+.title1
+{
+	background-position: -100px -33px;
+	left: 194px;
+}
+.title2
+{
+	background-position: -200px -33px;
+	left: 328px;
+}
+.title3
+{
+	background-position: -300px -33px;
+	left: 462px;
+}
+.title4
+{
+	background-position: -400px -33px;
+	left: 596px;
+}
+#help
+{
+	position:absolute;
+	width: 760px; 
+	height: 690px; 
+	text-align:center;
+	z-index:10;
+}
+#hc_01
+{
+	width:760px;
+	text-align:left;
+	overflow-y:scroll;
+	height:690px;
+}
+#content
+{
+	width: 760px;
+	height: 690px;
+}
+#container
+{
+	width: 760px;
+	height: 890px;
+}
+#main
+{
+	width: 760px;
+	height: 710px;
+}
+body,dl,dt,dd,ul,ol,li,pre,form,fieldset,input,p,blockquote,th,td{margin:0;padding:0;}
+.clear {clear:both;}
+img{border:0;}
+#box{ width:760px; height:55px;}
+.one{ width:760px;heigh:51px;}
+.logo{margin-top:5px;text-decoration:none; float:left;}
+.nai {margin-left:5px;margin-top:22px; float:left; height:31px;}
+.nai ul {list-style-type:circle;list-style:none;}
+.nai li {float:left; margin-left:3px;}
+.nai li a { padding-top:0; /*width:68px;*/}
+.nai li a:hover { padding-top:1px;}
+/*.nai li.nai1 a { width:96px;}*/
+.nai_01 {margin-top:13px; float:right;}
+.nai_01 ul { list-style-type:circle;list-style:none;}
+.nai_01 li {float:left;margin-top:10px;}
+.nai_01 li.nai5 a { width:108px;}
+.nai_01 li.nai6 a { width:105px; margin-left:3px;}
+.nai_01 li.nai7 a { width:106px; margin-left:3px;}
+.two{ margin-top:8px;}
+.tree{ margin-top:8px;}
+.bottom{height:60px;width:610px;*width:760px;background-color:#5E391D;padding:20px 0px 0px 150px;color:#B28950;}
+/**/
+.qz_div2 {margin-left:3px;background-position:left bottom;background-repeat:repeat-x;height:27px;padding:0;position:relative;}
+.qz_div2 ul {float:left;border-bottom:1px solid #CCCCCC;width:760px;}
+.qz_div2 ul li {margin-right:5px;float:left;list-style:none;}
+/*
+.qz_div2 ul li a {position:relative;float:left;padding:3px 3px 3px;text-decoration:none !important;background:none repeat scroll 0 0 #E6F4BF;font-size:12px;color:#5C5C5C;border-top:1px solid #AFC67A;border-left:1px solid #AFC67A;border-right:1px solid #AFC67A;}
+*/
+.qz_div2 ul li a {position:relative;float:left;padding:3px 3px 3px;text-decoration:none !important;}
+
+.qz_div2 a {border-color:#C4DA87;}
+
+
+/****************************/
+/******     window       ****/
+/****************************/
+*#popup_window {
+	font: 12px Arial, Helvetica, sans-serif;
+	color: #333333;
+}
+
+#ymbga_IframePopup_secondLine {
+	font: 10px Arial, Helvetica, sans-serif;
+	color:#666666;
+}
+
+#popup_window a:link {color: #666666;}
+#popup_window a:visited {color: #666666;}
+#popup_window a:hover {color: #000;}
+#popup_window a:active {color: #666666;}
+#popup_window a:focus{color: #666666;}
+#ymbga_IframePopup_overlay {
+	position: fixed;
+	z-index:100;
+	top: 0px;
+	left: 0px;
+	height:100%;
+	width:100%;
+}
+
+.ymbga_IframePopup_overlayMacFFBGHack {background: url(macFFBgHack.png) repeat;}
+.ymbga_IframePopup_overlayBG {
+	background-color:#000;
+	filter:alpha(opacity=75);
+	-moz-opacity: 0.75;
+	opacity: 0.75;
+}
+
+* html #ymbga_IframePopup_overlay { /* ie6 hack */
+     position: absolute;
+     height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+
+#popup_window {
+	position: fixed;
+	background: #ffffff;
+	z-index: 102;
+	color:#000000;
+	background: url(http://sb.yahoo-mbga.jp/static/img/pop_420_520.png) no-repeat 0 0;
+	padding: 10px;
+	text-align:left;
+	height:520px; 
+	width: 400px;
+	top:1%;
+	left:25%;
+}
+
+* html #popup_window { /* ie6 hack */
+position: absolute;
+margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (ymbga_IframePopupWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');
+}
+
+#popup_window img#ymbga_IframePopup_Image {
+	display:block;
+	margin: 15px 0 0 15px;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #666;
+	border-left: 1px solid #666;
+}
+
+#ymbga_IframePopup_caption{
+	height:25px;
+	padding:7px 30px 10px 25px;
+	float:left;
+}
+
+#ymbga_IframePopup_closeWindow{
+	height:25px;
+	padding:11px 25px 10px 0;
+	float:right;
+}
+
+#popup_close{
+	margin-bottom:1px;
+	text-align:right;
+	float:right;
+}
+
+#ymbga_IframePopup_ajaxWindowTitle{
+	float:left;
+	padding:7px 0 5px 10px;
+	margin-bottom:1px;
+}
+
+#popup_title{
+	/*background-color:#e8e8e8;*/
+	background-color: transparent;
+	position: absolute;
+	top: 17px;
+	right: 25px;
+}
+
+#popup_title a {
+	text-indent: -9999px;
+	display: block;
+	width: 14px;
+	height: 14px;
+	background: #fff url(http://sb.yahoo-mbga.jp/static/img/icon_popup.gif) no-repeat 0 0;
+	overflow: hidden;
+}
+
+
+#ymbga_IframePopup_ajaxContent{
+	clear:both;
+	padding:2px 15px 15px 15px;
+	overflow:auto;
+	text-align:left;
+	line-height:1.4em;
+}
+
+#ymbga_IframePopup_ajaxContent.ymbga_IframePopup_modal{
+	padding:15px;
+}
+
+#ymbga_IframePopup_ajaxContent p{
+	padding:5px 0px 5px 0px;
+}
+
+#ymbga_IframePopup_load{
+	position: fixed;
+	display:none;
+	height:13px;
+	width:208px;
+	z-index:103;
+	top: 50%;
+	left: 50%;
+	margin: -6px 0 0 -104px; /* -height/2 0 0 -width/2 */
+}
+
+* html #ymbga_IframePopup_load { /* ie6 hack */
+position: absolute;
+margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (ymbga_IframePopupWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');
+}
+
+#ymbga_IframePopup_HideSelect{
+	z-index:99;
+	position:fixed;
+	top: 0;
+	left: 0;
+	background-color:#fff;
+	border:none;
+	filter:alpha(opacity=0);
+	-moz-opacity: 0;
+	opacity: 0;
+	height:100%;
+	width:100%;
+}
+
+* html #ymbga_IframePopup_HideSelect { /* ie6 hack */
+     position: absolute;
+     height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+
+#popup_content{
+	clear:both;
+	border:none;
+	margin-bottom:-1px;
+	margin-top:1px;
+	_margin-bottom:1px;
+}
+
+
+#popup_window.window_bg {
+	background: url(http://sb.yahoo-mbga.jp/static/img/pop_420_520.png) no-repeat 0 0;
+}
+	
+#popup_window.bg620 {
+	background: url(http://sb.yahoo-mbga.jp/static/img/pop_620_400.png) no-repeat 0 0;
+}
+
+.ttl-lay {
+	background:#9fb7d4 ;
+	padding: 0;
+}
+.ttl-lay h2{
+	padding: 5px;
+	text-align:center;
+	color:#fff;
+}
+#imglist {
+	text-align:center;
+}
+.put-lay {
+    background: url("http://sb.yahoo-mbga.jp/static/img/put_dot.gif") repeat scroll 0 0 transparent;
+    border: 1px solid #9FB7D4;
+    margin: 10px auto;
+    width: 99%;
+}
+#imglist ul {margn:0;padding:0;}
+#imglist li {list-style:none;padding-top:10px;}
+
+

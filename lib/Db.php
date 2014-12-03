@@ -46,16 +46,6 @@ class db  {
         }
     }
 
-    public function fetchTest($sql)
-    {
-        try{
-            $sql = "select * from user_000";
-            $rs =  $this->db->query($sql);
-            return $rs;
-        }catch (Exception $e){
-            var_dump($e);
-        }
-    }
     /**
      * 获取第一行数据
      * @param $sql

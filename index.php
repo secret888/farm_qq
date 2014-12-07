@@ -55,7 +55,6 @@ if($object->uid != $admin_uid)
 $flash_vars = CommonModel::getValue('flash_vars');
 
 $object->flash_vars = eval("return $flash_vars;");
-
 $testustr = $cache->get('sandbox_ustrs');
 $testustr = empty($testustr)?array():$testustr;
 if(in_array($object->sharding["ustr"], $testustr))

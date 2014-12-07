@@ -16,7 +16,11 @@ class ItemModel extends AModel
     		$db = Common::getDB($this->uid);
 			$data = $db->fetchArray($sql);
 			if($data == false) {
-				$this->info = array();
+				$this->info = array(
+                    1=>array(),
+                    2=>array(),
+                    3=>array()
+                );
 				return;
 			}
 			else

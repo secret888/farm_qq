@@ -26,7 +26,6 @@ class Api
 
 	public function __construct()
 	{
-
         if(isset($_GET['pf']))
 		{
 			$this->_pf     = $_GET['pf'];
@@ -35,7 +34,7 @@ class Api
 		else{
 			$this->_pf = $_COOKIE['qq_pf'];
 		}
-	    if (!isset($_GET['open_id'])) {
+	    if (!isset($_GET['openid'])) {
             $this->_open_id = $_COOKIE["qq_openid"];
             $this->_open_key = $_COOKIE['qq_openkey'];
         } else {
@@ -44,9 +43,8 @@ class Api
             setcookie("qq_openid", $_GET['openid'], time()+3600*6);
             setcookie("qq_openkey", $_GET['openkey'], time()+3600*6);
         }
-
         if(empty($this->_open_id) || empty($this->_open_key)){
-            echo "非法登录";exit;
+            echo "缺少ID非法登录";exit;
         }
         
 		$this->config = Common::getConfig();

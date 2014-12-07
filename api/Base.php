@@ -26,4 +26,21 @@ class Base{
     {
         return array("response_code"=>0 , "data"=>$data);
     }
+
+    /**
+     * 构造统一的返回格式
+     * @param $result
+     * @return array
+     */
+    protected function response($result='')
+    {
+        $res = array(
+            'jsonrpc' => 2.0,
+            'id'      => $this->params[0],
+        );
+        if($result!==null){
+            $res['result'] = $result;
+        }
+        return $res;
+    }
 }

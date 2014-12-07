@@ -16,13 +16,7 @@ class Command extends Base
      */
     public function getUserCurrency()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => 'RMB'
-        );
-
-        return $result;
+        return $this->response('RMB');
     }
 
     /**
@@ -30,27 +24,17 @@ class Command extends Base
      */
     public function getAlternativeCurrency()
     {
-
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => 'RMB'
-        );
-
-        return $result;
+        return $this->response('RMB');
     }
 
-
+    /**
+     * 获取游戏所有道具相关信息
+     * @return array
+     */
     public function getAllProductPackages()
     {
         $AllProductPackages = Common::getGameConfig('productpackage');
-        $result             = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $AllProductPackages
-        );
-
-        return $result;
+        return $this->response($AllProductPackages);
     }
 
     /**
@@ -84,10 +68,9 @@ class Command extends Base
         Common::loadModel('UserModel');
         $UserModel = new UserModel($this->uid);
 
-
         $alluserinfo[]  = array(
             'userId'         => $this->uid,
-            'externalUserId' => '100005386150832',
+            'externalUserId' => '1',
             'name'           => $UserModel->info['name'],
             'firstName'      => $UserModel->info['name'],
             'pic'            => $UserModel->info['face'],
@@ -102,7 +85,7 @@ class Command extends Base
             foreach ($friendlist as $fid => $v) {
                 $alluserinfo[] = array(
                     'userId'         => $fid,
-                    'externalUserId' => '100005386150832',
+                    'externalUserId' => '1',
                     'name'           => $v['name'],
                     'firstName'      => $v['name'],
                     'pic'            => $v['face'],
@@ -115,13 +98,7 @@ class Command extends Base
         /***********************
          * 获取玩家好友信息并返回
          */
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $alluserinfo
-        );
-
-        return $result;
+        return $this->response($alluserinfo);
     }
 
     /**
@@ -158,13 +135,7 @@ class Command extends Base
             'timestamp' => 0,
         );
 
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array('entries' => $userlist)
-        );
-
-        return $result;
+        return $this->response(array('entries' => $userlist));
     }
 
     /**
@@ -221,15 +192,8 @@ class Command extends Base
         if (!empty($alllevellist)) {
             $alllevellist = Common::array_sort($alllevellist, 'value', 'esc');
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'entries' => $alllevellist
-            )
-        );
 
-        return $result;
+        return $this->response(array('entries' => $alllevellist));
     }
 
     /**
@@ -264,13 +228,8 @@ class Command extends Base
 
             );
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $level
-        );
 
-        return $result;
+        return $this->response($level);
     }
 
 
@@ -287,13 +246,7 @@ class Command extends Base
         $cache  = Common::getCache();
         $cache->set($_key, $status);
 
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $_SERVER['REQUEST_TIME'] * 1000
-        );
-
-        return $result;
+        return $this->response($_SERVER['REQUEST_TIME'] * 1000);
     }
 
     /**
@@ -348,24 +301,14 @@ class Command extends Base
         $_key  = $this->uid . "_level_status";
         $cache = Common::getCache();
         $cache->delete($_key);
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-        );
 
-        return $result;
+        return $this->response();
 
     }
 
     public function getUserAbCase()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => 0
-        );
-
-        return $result;
+        return $this->response(0);
     }
 
     /**
@@ -428,13 +371,8 @@ class Command extends Base
                 $itemlist[] = $v;
             }
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $itemlist
-        );
 
-        return $result;
+        return $this->response($itemlist);
     }
 
     /**
@@ -490,18 +428,14 @@ class Command extends Base
             }
         }
         $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'itemId' => $iteminfo['itemId'],
-                'amount' => $amount,
-                'remain' => $iteminfo['remain'],
-                'total'  => $iteminfo['total'],
-                'avail'  => 'UNLOCKED'
-            )
+            'itemId' => $iteminfo['itemId'],
+            'amount' => $amount,
+            'remain' => $iteminfo['remain'],
+            'total'  => $iteminfo['total'],
+            'avail'  => 'UNLOCKED'
         );
 
-        return $result;
+        return $this->response($result);
     }
 
 
@@ -538,29 +472,18 @@ class Command extends Base
         $ItemModel->destroy();
 
         $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'itemId' => $itemid,
-                'amount' => $ItemModel->info[1][$itemid]['amount'],
-                'remain' => $ItemModel->info[1][$itemid]['remain'],
-                'total'  => $ItemModel->info[1][$itemid]['total'],
-                'avail'  => 'UNLOCKED'
-            )
+            'itemId' => $itemid,
+            'amount' => $ItemModel->info[1][$itemid]['amount'],
+            'remain' => $ItemModel->info[1][$itemid]['remain'],
+            'total'  => $ItemModel->info[1][$itemid]['total'],
+            'avail'  => 'UNLOCKED'
         );
-
-        return $result;
+        return $this->response($result);
     }
 
     public function clientException2()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array()
-        );
-
-        return $result;
+        return $this->response(array());
     }
 
     /**
@@ -602,13 +525,8 @@ class Command extends Base
                 'slots' => $slots
             );
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $maps
-        );
 
-        return $result;
+        return $this->response($maps);
     }
 
     /**
@@ -652,15 +570,9 @@ class Command extends Base
             $UserModel->destroy();
         }
 
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'collectibles' => $UserModel->info['collections']
-            )
-        );
-
-        return $result;
+        return $this->response(array(
+            'collectibles' => $UserModel->info['collections']
+        ));
     }
 
     /**
@@ -670,16 +582,10 @@ class Command extends Base
     {
         Common::loadModel('UserModel');
         $UserModel = new UserModel($this->uid);
-        $result    = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'collectibles' => $UserModel->info['collections']
 
-            )
-        );
-
-        return $result;
+        return $this->response(array(
+            'collectibles' => $UserModel->info['collections']
+        ));
     }
 
 
@@ -691,23 +597,12 @@ class Command extends Base
      */
     public function GuiShown()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-        );
-
-        return $result;
+        return $this->response();
     }
 
     public function getMaxLives()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => 5
-        );
-
-        return $result;
+        return $this->response(5);
     }
 
     /**
@@ -742,17 +637,12 @@ class Command extends Base
             $UserModel->iUpdate($updata);
             $UserModel->destroy();
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'lives'                  => $lifeinfo[0] + $otherlives,
-                'timeToNextRegeneration' => $lifeinfo[1],
-                'immortal'               => $immortal, //无限生命boolean
-            ),
-        );
 
-        return $result;
+        return $this->response(array(
+            'lives'                  => $lifeinfo[0] + $otherlives,
+            'timeToNextRegeneration' => $lifeinfo[1],
+            'immortal'               => $immortal, //无限生命boolean
+        ));
     }
 
 
@@ -772,6 +662,7 @@ class Command extends Base
         $activity     = $userinfo['activity'];
         $alllives     = $lifeinfo[0] + $otherlives;
         $newfreelives = $lifeinfo[1];
+        $immortal = false;
         $updata       = array();
         if ($coollife) {
             $activity['lives']  = $otherlives + 1;
@@ -798,17 +689,11 @@ class Command extends Base
         $UserModel->iUpdate($updata);
         $UserModel->destroy();
 
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'lives'                  => $alllives,
-                'timeToNextRegeneration' => $newfreelives,
-                'immortal'               => $immortal, //无限生命boolean
-            ),
-        );
-
-        return $result;
+        return $this->response(array(
+            'lives'                  => $alllives,
+            'timeToNextRegeneration' => $newfreelives,
+            'immortal'               => $immortal, //无限生命boolean
+        ));
     }
 
     public function removeLives()
@@ -864,17 +749,11 @@ class Command extends Base
             }
         }
 
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'lives'                  => $lifeinfo[0] + $otherlives - 1,
-                'timeToNextRegeneration' => $lifeinfo[1],
-                'immortal'               => $immortal, //无限生命boolean
-            ),
-        );
-
-        return $result;
+        return $this->response(array(
+            'lives'                  => $lifeinfo[0] + $otherlives - 1,
+            'timeToNextRegeneration' => $lifeinfo[1],
+            'immortal'               => $immortal, //无限生命boolean
+        ));
     }
 
     /**
@@ -908,26 +787,13 @@ class Command extends Base
             }
         }
         $MessageModel->destroy();
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $list
-        );
 
-        return $result;
+        return $this->response($list);
     }
 
     public function getUrlMessageOncePerId()
     {
-        $str = "";
-
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $str
-        );
-
-        return $result;
+        return $this->response(0);
     }
 
     /**
@@ -941,9 +807,6 @@ class Command extends Base
     {
         $params    = $this->params[1][0];
         $levelId   = $params['levelId'];
-        $stars     = $params['stars'];
-        $episodeId = $params['episodeId'];
-        $score     = $params['score'];
 
         Common::loadModel('LevelModel');
         $LevelModel = new LevelModel($this->uid);
@@ -962,38 +825,33 @@ class Command extends Base
             $UserModel->destroy();
         }
 
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-        );
-
-        return $result;
+        return $this->response();
     }
 
     /**
      * 货币相关 作用不明
+     *
      */
     public function getCurrentUser()
     {
         Common::loadModel('UserModel');
         $UserModel = new UserModel($this->uid);
         $userinfo  = $UserModel->info;
-        $result    = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'userId'         => $this->uid,
-                'externalUserId' => '100005386150832',
-                'name'           => $userinfo['name'],
-                'firstName'      => $userinfo['name'],
-                'pic'            => $userinfo['face'],
-                'country'        => 'china',
-                'langCode'       => 'zh_CN',
-                'lastSignInTime' => $userinfo['last_logged_in'],
-            )
+        $info = array(
+            'userId'         => $this->uid,
+            'externalUserId' => '1',
+            'name'           => $userinfo['name'],
+            'firstName'      => $userinfo['name'],
+            'pic'            => $userinfo['face'],
+            'pic100'            => $userinfo['face'],
+            'country'        => 'china',
+            'langCode'       => 'zh_CN',
+            'lastSignInTime' => $userinfo['last_logged_in'],
+            'friendType' => 'NONE',
+            'pictureUrls' =>array (),
         );
 
-        return $result;
+        return $this->response($info);
     }
 
     /**
@@ -1001,13 +859,7 @@ class Command extends Base
      */
     public function getUserTime()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => microtime(true) * 1000
-        );
-
-        return $result;
+        return $this->response(microtime(true) * 1000);
     }
 
     /**
@@ -1040,15 +892,10 @@ class Command extends Base
         $UserModel = new UserModel($this->uid);
         $activity  = $UserModel->info['activity'];
         $tutorial  = empty($activity['tutorial']) ? array() : $activity['tutorial'];
-        $result    = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'completeTutorialIds' => $tutorial
-            )
-        );
 
-        return $result;
+        return $this->response(array(
+            'completeTutorialIds' => $tutorial
+        ));
     }
 
     /**
@@ -1068,15 +915,10 @@ class Command extends Base
             $UserModel->iUpdate($updata);
             $UserModel->destroy();
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'completeTutorialIds' => $activity['tutorial']
-            )
-        );
 
-        return $result;
+        return $this->response(array(
+            'completeTutorialIds' => $activity['tutorial']
+        ));
     }
 
 
@@ -1095,16 +937,11 @@ class Command extends Base
             $UserModel->destroy();
             $coins = 0;
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'softCurrency' => $coins,
-                'hardCurrency' => $userinfo['cash'],
-            )
-        );
 
-        return $result;
+        return $this->response(array(
+            'softCurrency' => $coins,
+            'hardCurrency' => $userinfo['cash'],
+        ));
     }
 
     /*
@@ -1128,16 +965,10 @@ class Command extends Base
         $UserModel->iUpdate(array('coins' => -$dconins));
         $UserModel->destroy();
 
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'softCurrency' => $UserModel->info['coins'],
-                'hardCurrency' => $UserModel->info['cash'],
-            )
-        );
-
-        return $result;
+        return $this->response(array(
+            'softCurrency' => $UserModel->info['coins'],
+            'hardCurrency' => $UserModel->info['cash'],
+        ));
     }
 
 
@@ -1168,19 +999,14 @@ class Command extends Base
             $UserModel->iUpdate($updata);
             $UserModel->destroy();
 
-            $result = array(
-                'jsonrpc' => 2.0,
-                'id'      => $this->params[0],
-                'result'  => array(
-                    'softCurrency' => $UserModel->info['coins'],
-                    'hardCurrency' => $UserModel->info['cash'],
-                )
-            );
-        } else {
-            $result = $this->error(array('id' => $this->params[0], 'code' => __FUNCTION__));
-        }
+            return $this->response(array(
+                'softCurrency' => $UserModel->info['coins'],
+                'hardCurrency' => $UserModel->info['cash'],
+            ));
 
-        return $result;
+        } else {
+            return $this->error(array('id' => $this->params[0], 'code' => __FUNCTION__));
+        }
     }
 
     /**
@@ -1189,23 +1015,13 @@ class Command extends Base
     public function getFiles()
     {
         $files  = Common::getGameConfig('files');
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => json_encode($files)
-        );
 
-        return $result;
+        return $this->response(json_encode($files));
     }
 
     public function synchronizeLevels()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-        );
-
-        return $result;
+        return $this->response();
     }
 
     /**
@@ -1246,13 +1062,7 @@ class Command extends Base
             }
         }
 
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $list
-        );
-
-        return $result;
+        return $this->response($list);
     }
 
     /**
@@ -1301,14 +1111,8 @@ class Command extends Base
                 );
             }
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $list
-        );
 
-        return $result;
-
+        return $this->response($list);
     }
 
     /**
@@ -1348,15 +1152,8 @@ class Command extends Base
             $UserModel->destroy();
             $result = true;
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $result
-        );
 
-        return $result;
-
-
+        return $this->response($result);
     }
 
     /**
@@ -1394,13 +1191,8 @@ class Command extends Base
                 }
             }
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $list,
-        );
 
-        return $result;
+        return $this->response($list);
     }
 
     /**
@@ -1438,13 +1230,8 @@ class Command extends Base
             }
 
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $list
-        );
 
-        return $result;
+        return $this->response($list);
     }
 
     /**
@@ -1494,8 +1281,6 @@ class Command extends Base
                     default:
                         break;
                 }
-
-
             }
         }
 
@@ -1510,14 +1295,8 @@ class Command extends Base
             }
 
         }
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => $list
 
-        );
-
-        return $result;
+        return $this->response($list);
 
     }
 
@@ -1562,24 +1341,17 @@ class Command extends Base
             $ItemModel->destroy();
             $amount = 1;
         } else {
-
             $amount             = $thisinfo['amount'];
             $iteminfo['itemId'] = $thisinfo['id'];
         }
 
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => array(
-                'type'         => $iteminfo['type'],
-                'typeId'       => $iteminfo['itemId'],
-                'amount'       => $amount,
-                'category'     => $iteminfo['category'],
-                'availability' => $iteminfo['availability'],
-            )
-        );
-
-        return $result;
+        return $this->response(array(
+            'type'         => $iteminfo['type'],
+            'typeId'       => $iteminfo['itemId'],
+            'amount'       => $amount,
+            'category'     => $iteminfo['category'],
+            'availability' => $iteminfo['availability'],
+        ));
     }
 
     /**
@@ -1587,22 +1359,12 @@ class Command extends Base
      */
     public function publishHighScore()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-        );
-
-        return $result;
+        return $this->response();
     }
 
     public function trackFreeBossLevelEntry()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-        );
-
-        return $result;
+        return $this->response();
     }
 
     /**
@@ -1618,43 +1380,22 @@ class Command extends Base
      */
     public function publishFriendBeaten()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-        );
-
-        return $result;
+        return $this->response();
     }
 
     public function publishPassFriend()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-        );
-
-        return $result;
+        return $this->response();
     }
 
     public function publishGaveLife()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-        );
-
-        return $result;
+        return $this->response();
     }
 
     public function missionAccomplished()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-            'result'  => false
-        );
-
-        return $result;
+        return $this->response(false);
     }
 
     /**
@@ -1667,22 +1408,50 @@ class Command extends Base
 
     public function GuiLeft()
     {
-        $result = array(
-            'jsonrpc' => 2.0,
-            'id'      => $this->params[0],
-        );
-
-        return $result;
+        return $this->response();
     }
 
+    /**
+     * 当前用户？？？？
+     * @return array
+     */
     public function getCurrentUserAppSignIn()
     {
-        return true;
+        return $this->response(array ('num' => 27));
     }
 
+    /**
+     * 用户 衡量标准  ？？？？
+     * 一些消费 发消息的统计信息
+     * @return bool
+     */
     public function getUserMetrics()
     {
-        return true;
+        Common::loadModel('UserModel');
+        $UserModel = new UserModel($this->uid);
+        $userinfo  = $UserModel->info;
+        $info = array (
+            'coreUserId' => $this->uid,
+            'lastUpdated' => $userinfo['last_logged_in'],
+            'totalMoneySpent' =>
+                array (
+                    'cents' => 0,
+                    'currency' => 'RMB',
+                ),
+            'moneySpentLast30Days' =>
+                array (
+                    'cents' => 0,
+                    'currency' => 'RMB',
+                ),
+            'gamingDaysLast30Days' => 1,
+            'installDate' => $userinfo['registration_time'],
+            'messagesSentLast30Days' => 0,
+            'conversionDate' => 0,
+            'segment' => 0,
+            'defaultObject' => false,
+        );
+
+        return $this->response($info);
     }
 
     public function getFriendsForOtherGames()

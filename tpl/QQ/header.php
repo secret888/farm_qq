@@ -5,7 +5,7 @@ var _ustr = "<?php echo $this->sharding['ustr'];?>";
 </script>
 
 <script type="text/javascript" charset="utf-8" src="http://fusion.qq.com/fusion_loader?appid=<?php echo $this->config['api']['appId'];?>&platform=<?php echo $sns;?>"></script>
-<script type="text/javascript" src="<?php echo $this->flash_vars['CDN'];?>ms/js/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->flash_vars['CDN'];?>/ms/js/jquery.js"></script>
 
 <script type="text/javascript">   
 
@@ -16,25 +16,25 @@ var _ustr = "<?php echo $this->sharding['ustr'];?>";
     	fusion2.dialog.sendStory({
             title:obj.title,
             msg:obj.msg,
-            img:'<?php echo $this->flash_vars['CDN'];?>ms/images/feed.png'
-            });		
+            img:'<?php echo $this->flash_vars['CDN'];?>/ms/images/feed.png'
+            });
     }
 
     <?php 
-	    $cache = Common::getCache();
-		if(in_array($this->sharding['ustr'], $cache->get('sandbox_ustrs')))
-		{
+	    //$cache = Common::getCache();
+		//if(in_array($this->sharding['ustr'], $cache->get('sandbox_ustrs')))
+		//{
 	?>
 	var paystr = true;
 	
 	<?php 		
-        }
-        else
-        {
+        //}
+       // else
+        //{
     ?>
-		var paystr = false;
+		//var paystr = false;
     <?php
-		}
+		//}
     ?>
     
     //支付
@@ -249,7 +249,7 @@ body,dl,dt,dd,ul,ol,li,pre,form,fieldset,input,p,blockquote,th,td{margin:0;paddi
 body{}
 #menu
 {
-	background: url("<?php echo $this->flash_vars['CDN'];?>ms/images/menu/menu_bg1.png") repeat scroll 0 0 transparent;
+	background: url("<?php echo $this->flash_vars['CDN'];?>/ms/images/menu/menu_bg1.png") repeat scroll 0 0 transparent;
     height: 93px;
     width: 960px;
     margin:0 auto;
@@ -284,7 +284,7 @@ body{}
 }
 #daily
 {
-	background: url("<?php echo $this->flash_vars['CDN'];?>ms/images/menu/daily1.png") repeat scroll 0 0 transparent;
+	background: url("<?php echo $this->flash_vars['CDN'];?>/ms/images/menu/daily1.png") repeat scroll 0 0 transparent;
     height: 221px;
     margin: 0 auto;
     width: 960px;
@@ -296,7 +296,7 @@ body{}
 </div>
 <div style="width: 970px;margin:0 auto;">
 	<a style=" height: 80px; display: block; " href="javascript:void(0)" onclick="invite();"  >
-	<img src="<?php echo $this->flash_vars['CDN'];?>ms/images/<?php echo $this->flash_vars['banner'];?>" alt="邀请送礼" title="邀请送礼" />
+	<img src="<?php echo $this->flash_vars['CDN'];?>/ms/images/<?php echo $this->flash_vars['banner'];?>" alt="邀请送礼" title="邀请送礼" />
 	</a>
 </div>
 <div style="clear: both"></div>
@@ -329,6 +329,12 @@ body{}
                     <a onclick="recharge();return false;" href="javascript:void(0);" title="Q点充值">Q点充值</a>
                 </li>
             </ul>
+        <?php
+        ?>
+        <a href="public/tools/farm_admin.php" target="_blank">后台</a>
+        <?php
+
+        ?>
         </div>
     </div>
 </div>

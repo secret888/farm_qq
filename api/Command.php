@@ -1015,7 +1015,6 @@ class Command extends Base
     public function getFiles()
     {
         $files  = Common::getGameConfig('files');
-
         return $this->response(json_encode($files));
     }
 
@@ -1456,22 +1455,27 @@ class Command extends Base
 
     public function getFriendsForOtherGames()
     {
-        return true;
+        return $this->response(array());
     }
 
+    /**
+     * 倒计时时间
+     * 60*15
+     * @return array
+     */
     public function getLifeRegenerationTimeInSeconds()
     {
-        return true;
+        return $this->response(900);
     }
 
     public function getAccomplishedMissions()
     {
-        return true;
+        return $this->response(array());
     }
 
     public function getAvailableMissions()
     {
-        return true;
+        return $this->response(array());
     }
 
     /**
@@ -1491,7 +1495,9 @@ class Command extends Base
 
     public function isNonConvertedUserAndCampaignActive()
     {
-        return true;
+        return $this->response(array (
+            'isNonPayer' => true,
+        ));
     }
 
     public function isPassivePlayerAndCampaignActive()
@@ -1501,22 +1507,37 @@ class Command extends Base
 
     public function getCapabilities()
     {
-        return true;
+        return $this->response(array (
+            'appFriends' => true,
+            'allFriends' => true,
+            'postToSelf' => true,
+            'postToUser' => true,
+            'notifyUser' => true,
+            'likeButton' => true,
+            'publishActions' => true,
+            'xmissions' => true,
+            'email' => true,
+            'invitableFriends' => true,
+        ));
     }
 
     public function shouldShowSendToMobileButton()
     {
-        return true;
+        return $this->response(true);
     }
 
     public function getUserAppPageLikes()
     {
-        return true;
+        return $this->response(array (
+            'appFan' => false,
+            'time' => 0,
+            'displayedToUser' => 1,
+        ));
     }
 
     public function refresh()
     {
-        return NULL;
+        return $this->response();
     }
 
     /**
@@ -1539,7 +1560,7 @@ class Command extends Base
 
     public function findBestRewardForUser()
     {
-        return true;
+        return $this->response(array());
     }
 
     /**
@@ -1551,16 +1572,62 @@ class Command extends Base
      */
     public function getUnlimitedLivesExpireTime()
     {
-        return true;
+
+        return $this->response(array (
+            'coreUserId' => $this->uid,
+            'expireTimestamp' => 0,
+        ));
     }
 
     public function getTranslationsUrls()
     {
-        return true;
+        return $this->response(array (
+//            0 => 'http://d2d8g5sjza4b48.cloudfront.net/tr/achievements_zh_CN.json?_v=zcjxce',
+//            1 => 'http://d2d8g5sjza4b48.cloudfront.net/tr/achievements_zh.json?_v=vq0guf',
+//            2 => 'http://d2d8g5sjza4b48.cloudfront.net/tr/achievements.json?_v=vzlqcc',
+            0 => '',
+            1 => '',
+            2 => ''
+        ));
     }
 
     public function getAchievementTranslationsUrls()
     {
         return true;
+    }
+
+    public function shouldEnable()
+    {
+        return $this->response(1);
+    }
+
+    public function getDeferrals()
+    {
+        return $this->response(array());
+    }
+
+    public function isProfileCardEnabled()
+    {
+        return $this->response(true);
+    }
+    public function getActiveKingAppIds()
+    {
+        return $this->response(1);
+    }
+
+    public function getActiveKingApps()
+    {
+        return $this->response(array (
+            0 =>
+                array (
+                    'id' => 1,
+                    'carouselImage' => 'http://d2d8g5sjza4b48.cloudfront.net/pc/app_5.png',
+                ),
+        ));
+    }
+
+    public function getAllLevelsBundleId()
+    {
+        return $this->response($this->uid);
     }
 }

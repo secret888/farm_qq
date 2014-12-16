@@ -10,7 +10,7 @@
         }
         #flashMain {
 
-            background:  url('<?php echo $this->flash_vars['CDN'];?>ms/images/loading.png') no-repeat  center;
+            background:  url('<?php echo $this->flash_vars['CDN'];?>/ms/images/loading.png') no-repeat  center;
         }
 
         #notice {
